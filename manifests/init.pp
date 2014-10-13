@@ -15,7 +15,7 @@
  	"bunzip2":                  ensure => installed;
  	"wget":                     ensure => installed;
  	"tar":                      ensure => installed;
-    "bwa":                      ensure => installed;
+    	"bwa":                      ensure => installed;
 
 }
 
