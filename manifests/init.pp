@@ -17,11 +17,13 @@
  	"tar":						ensure => installed;
     	"bwa":						ensure => installed;
     	"zlib-devel":					ensure => installed;
+	"ncbi-blast+":					ensure => installed;
+	"python-biopython":				ensure => installed;
 
 }
 
 # set default paths for storing data, tools and source code
-$username 	= "hettling"
+$username 	= "janwillem"
 $erycina_dir	= "/home/${username}/assembly_Erycina"  ##"/home/${id}/assembly_Erycina"
 $tools_dir	= "${erycina_dir}/tools"
 $tools_bin_dir	= "${tools_dir}/bin"
@@ -57,11 +59,11 @@ file {
     		owner   => $username,
     		recurse => true;
 
-  	"muscle_link":
-		path    => "${tools_bin_dir}/muscle",
+  	"bwa_link":
+		path    => "${tools_bin_dir}/bwa",
 		ensure  => link,
-		target  => "${tools_bin_dir}/muscle3.8.31_i86linux64",
-		require => Exec["unzip_muscle"];
+		target  => "${tools_bin_dir}/bwa-0.7.10",
+		require => Exec["unzip_bwa"];
 	"consense_link":
 		path    => "/usr/local/bin/consense",
 		ensure  => link,
@@ -89,30 +91,26 @@ file {
 
 # command line tasks
 exec {
-  # add bin directory for all required tools to PATH
+  	# add bin directory for all required tools to PATH
 	"make_bindir_sh":
-    		command => "echo 'export PATH=\$PATH:${tools_bin_dir}' > supersmart-tools-bin.sh",
+    		command => "echo 'export PATH=\$PATH:${tools_bin_dir}' > Erycina-tools-bin.sh",
     		cwd     => "/etc/profile.d",
-    		creates => "/etc/profile.d/supersmart-tools-bin.sh",
+    		creates => "/etc/profile.d/Erycina-tools-bin.sh",
     		require => Exec[ 'clone_bio_phylo' ];
 	"make_bindir_csh":
-    		command => "echo 'setenv PATH \$PATH:${tools_bin_dir}' > supersmart-tools-bin.csh",
+    		command => "echo 'setenv PATH \$PATH:${tools_bin_dir}' > Erycina-tools-bin.csh",
     		cwd     => "/etc/profile.d",
-    		creates => "/etc/profile.d/supersmart-tools-bin.csh",
+    		creates => "/etc/profile.d/Erycina-tools-bin.csh",
     		require => File[ $tools_bin_dir ];
+
 	# install bwa
 	"download_bwa":
 		command => "wget http://downloads.sourceforge.net/project/bio-bwa/bwa-0.7.10.tar.bz2 -O bwa-0.7.10.tar.bz2",
 		cwd     => $tools_dir,
 		creates => "${tools_dir}/bwa-0.7.10.tar.bz2",
 		require => Package[ 'wget', 'tar' ];
-	"bunzip_bwa":
-		command => "bunzip2 bwa-0.7.10.tar.bz2",
-		cwd     => $tools_dir,
-		creates => "${tools_dir}/bwa-0.7.10.tar.bz2",
-		require => Package[ 'bunzip2' ];
 	"unzip_bwa":
-		command => "tar -xvf bwa-0.7.10.tar",
+		command => "tar -jxf bwa-0.7.10.tar",
 		cwd     => $tools_dir,
 		creates => "${tools_dir}/bwa-0.7.10.tar",
 		require => Exec['download_bwa'];
@@ -121,6 +119,6 @@ exec {
 		creates => "/usr/bin/bwa",
 		cwd     => "${tools_dir}/bwa-0.7.10",
 		timeout => 0,
-		require => Exec['unzip_bwa'];
+		require => Exec['unzip_bwa', 'zlib-devel'];
 
 }
