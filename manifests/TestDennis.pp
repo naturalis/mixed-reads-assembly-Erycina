@@ -15,7 +15,7 @@ package {
 	"zlib1g":					ensure => installed;
 	"bwa":						ensure => installed;
 	"python":					ensure => installed;
-	"python-biopython":			ensure => installed;
+	"python-biopython":				ensure => installed;
 	"blast2":					ensure => installed;
-	"ncbi-blast+":				ensure => installed;
+	"ncbi-blast+":					ensure => installed;
 }
