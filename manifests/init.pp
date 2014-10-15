@@ -12,15 +12,15 @@
 
  # Installing required packages.
  package {
- 	"bzip2":					ensure => installed;
- 	"wget":						ensure => installed;
- 	"tar":						ensure => installed;
-	"zlib1g-dev":					ensure => installed;
-	"python":					ensure => installed;
-	"python-biopython":				ensure => installed;
-	"blast2":					ensure => installed;
-	"ncbi-blast+":					ensure => installed;
-	"samtools":					ensure => installed;
+ 	"bzip2":					ensure => latest;
+ 	"wget":						ensure => latest;
+ 	"tar":						ensure => latest;
+	"zlib1g-dev":					ensure => latest;
+	"python":					ensure => latest;
+	"python-biopython":				ensure => latest;
+	"blast2":					ensure => latest;
+	"ncbi-blast+":					ensure => latest;
+	"samtools":					ensure => latest;
 
 
 }
