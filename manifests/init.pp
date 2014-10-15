@@ -12,15 +12,15 @@
 
  # Installing required packages.
  package {
- 	"bzip2":					ensure => installed;
- 	"wget":						ensure => installed;
- 	"tar":						ensure => installed;
-	"zlib1g-dev":					ensure => installed;
-	"python":					ensure => installed;
-	"python-biopython":				ensure => installed;
-	"blast2":					ensure => installed;
-	"ncbi-blast+":					ensure => installed;
-	"samtools":					ensure => installed;
+ 	"bzip2":					ensure => latest;
+ 	"wget":						ensure => latest;
+ 	"tar":						ensure => latest;
+	"zlib1g-dev":					ensure => latest;
+	"python":					ensure => latest;
+	"python-biopython":				ensure => latest;
+	"blast2":					ensure => latest;
+	"ncbi-blast+":					ensure => latest;
+	"samtools":					ensure => latest;
 
 
 }
@@ -92,12 +92,12 @@ file {
 exec {
 	# install bwa
 	"download_bwa":
-		command => "wget http://downloads.sourceforge.net/project/bio-bwa/bwa-0.7.10.tar.bz2 -O bwa-0.7.10.tar.bz2",
+		command => "wget http://sourceforge.net/projects/bio-bwa/files/latest/download?source=files -O bwa.tar.bz2",
 		cwd     => $bin_dir,
-		creates => "${bin_dir}/bwa-0.7.10.tar.bz2",
+		creates => "${bin_dir}/bwa.tar.bz2",
 		require => Package[ 'wget', 'tar' ];
 	"unzip_bwa":
-		command => "tar -jxvf bwa-0.7.10.tar.bz2",
+		command => "tar -jxvf bwa.tar.bz2",
 		cwd     => $bin_dir,
 		creates => "${bin_dir}/bwa-0.7.10",
 		require => Exec['download_bwa'];
