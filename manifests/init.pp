@@ -92,12 +92,12 @@ file {
 exec {
 	# install bwa
 	"download_bwa":
-		command => "wget http://downloads.sourceforge.net/project/bio-bwa/bwa-0.7.10.tar.bz2 -O bwa-0.7.10.tar.bz2",
+		command => "wget http://sourceforge.net/projects/bio-bwa/files/latest/download?source=files -O bwa.tar.bz2",
 		cwd     => $bin_dir,
-		creates => "${bin_dir}/bwa-0.7.10.tar.bz2",
+		creates => "${bin_dir}/bwa.tar.bz2",
 		require => Package[ 'wget', 'tar' ];
 	"unzip_bwa":
-		command => "tar -jxvf bwa-0.7.10.tar.bz2",
+		command => "tar -jxvf bwa.tar.bz2",
 		cwd     => $bin_dir,
 		creates => "${bin_dir}/bwa-0.7.10",
 		require => Exec['download_bwa'];
