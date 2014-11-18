@@ -5,7 +5,7 @@
 set -e -x
 
 # Git repository to clone
-puppet_source=https://github.com/naturalis/puppet.git
+puppet_source=https://github.com/naturalis/mixed-reads-assembly-Erycina.git
 
 #
 # Get latest puppet version
@@ -45,4 +45,4 @@ if [ -f /user-data.yaml  ]; then
    cp /user-data.yaml /etc/puppet/hieradata/user-data.yaml
 fi
 
-puppet apply /etc/puppet/manifests/mrbayes.pp
+puppet apply /etc/puppet/manifests/Testinstall_DM2.pp
