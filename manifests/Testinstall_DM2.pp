@@ -27,7 +27,7 @@
 
 # set default paths for data, scripts and source code
 $username 		= "ubuntu"
-$erycina_dir	= "/home/${username}/mixed-reads-assembly-Erycina2"  ##"/home/${id}/mixed-reads-assembly-Erycina"
+$erycina_dir	= "/home/${username}/mixed-reads-assembly-Erycina"  ##"/home/${id}/mixed-reads-assembly-Erycina"
 $bin_dir		= "${erycina_dir}/bin"
 $data_dir		= "${erycina_dir}/data"
 $doc_dir		= "${erycina_dir}/doc"
