@@ -12,28 +12,28 @@
 
  # Installing required packages.
  package {
- 	"bzip2":					ensure => installed;
- 	"wget":						ensure => installed;
- 	"tar":						ensure => installed;
-	"zlib1g-dev":				ensure => installed;
-	"python":					ensure => installed;
-	"python-biopython":			ensure => installed;
-	"blast2":					ensure => installed;
-	"ncbi-blast+":				ensure => installed;
-	"samtools":					ensure => installed;
-
+ 	"bzip2":					ensure => latest;
+ 	"wget":						ensure => latest;
+ 	"tar":						ensure => latest;
+	"zlib1g-dev":					ensure => latest;
+	"python":					ensure => latest;
+	"python-biopython":				ensure => latest;
+	"blast2":					ensure => latest;
+	"ncbi-blast+":					ensure => latest;
+	"samtools":					ensure => latest;
+	"make":						ensure => latest;
 
 }
 
 # set default paths for data, scripts and source code
 $username 		= "ubuntu"
-$erycina_dir	= "/home/${username}/mixed-reads-assembly-Erycina"  ##"/home/${id}/mixed-reads-assembly-Erycina"
+$erycina_dir		= "/home/${username}/mixed-reads-assembly-Erycina"  ##"/home/${id}/mixed-reads-assembly-Erycina"
 $bin_dir		= "${erycina_dir}/bin"
 $data_dir		= "${erycina_dir}/data"
 $doc_dir		= "${erycina_dir}/doc"
-$doc_paper_dir	= "${doc_dir}/paper"
-$manifests_dir	= "${erycina_dir}/manifests"
-$results_dir	= "${erycina_dir}/results"
+$doc_paper_dir		= "${doc_dir}/paper"
+$manifests_dir		= "${erycina_dir}/manifests"
+$results_dir		= "${erycina_dir}/results"
 $src_dir		= "${erycina_dir}/src"
 
 
@@ -52,34 +52,34 @@ file {
 		recurse => true;
 	$data_dir:
 		ensure  => directory,
-    	group   => $username,
-    	owner   => $username,
+    		group   => $username,
+    		owner   => $username,
 		recurse => true;
 	$doc_dir:
 		ensure  => directory,
-    	group   => $username,
-    	owner   => $username,
-    	recurse => true;
+    		group   => $username,
+    		owner   => $username,
+    		recurse => true;
     $doc_paper_dir:
 		ensure  => directory,
 	  	group   => $username,
-    	owner   => $username,
-    	recurse => true;
+    		owner   => $username,
+    		recurse => true;
     $manifests_dir:
 		ensure  => directory,
-    	group   => $username,
-    	owner   => $username,
-    	recurse => true;
+    		group   => $username,
+    		owner   => $username,
+    		recurse => true;
 	$results_dir:
 		ensure  => directory,
 	  	group   => $username,
-    	owner   => $username,
-    	recurse => true;
+    		owner   => $username,
+    		recurse => true;
     $src_dir:
 		ensure  => directory,
 	  	group   => $username,
-    	owner   => $username,
-    	recurse => true;
+    		owner   => $username,
+    		recurse => true;
 #  	"bwa_link":
 #		path    => "${bin_dir}/bwa",
 #		ensure  => link,
@@ -92,7 +92,7 @@ file {
 exec {
 	# install bwa
 	"download_bwa":
-		command => "wget http://sourceforge.net/projects/bio-bwa/files/latest/download?source=files -O bwa.tar.bz2",
+		command => "wget http://sourceforge.net/projects/bio-bwa/files/bwa-0.7.10.tar.bz2/download -O bwa.tar.bz2",
 		cwd     => $bin_dir,
 		creates => "${bin_dir}/bwa.tar.bz2",
 		require => Package[ 'wget', 'tar' ];
