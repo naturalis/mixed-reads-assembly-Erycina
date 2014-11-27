@@ -25,11 +25,10 @@
 
 }
 
-# set default paths for data, scripts and source code
+# set default paths for scripts and source code
 $username 		= "ubuntu"
 $erycina_dir		= "/home/${username}/mixed-reads-assembly-Erycina"  ##"/home/${id}/mixed-reads-assembly-Erycina"
 $bin_dir		= "${erycina_dir}/bin"
-$data_dir		= "${erycina_dir}/data"
 $doc_dir		= "${erycina_dir}/doc"
 $doc_paper_dir		= "${doc_dir}/paper"
 $manifests_dir		= "${erycina_dir}/manifests"
@@ -38,7 +37,7 @@ $src_dir		= "${erycina_dir}/src"
 
 
 
-# create links for executables and data directories
+# create links for executables directories
 file {
 	$erycina_dir:
 		ensure  => directory,
@@ -49,11 +48,6 @@ file {
 		ensure  => directory,
 		group   => $username,
 		owner   => $username,
-		recurse => true;
-	$data_dir:
-		ensure  => directory,
-    		group   => $username,
-    		owner   => $username,
 		recurse => true;
 	$doc_dir:
 		ensure  => directory,
@@ -75,7 +69,7 @@ file {
 	  	group   => $username,
     		owner   => $username,
     		recurse => true;
-    $src_dir:
+    	$src_dir:
 		ensure  => directory,
 	  	group   => $username,
     		owner   => $username,
