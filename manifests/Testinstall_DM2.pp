@@ -26,15 +26,16 @@
 }
 
 # set default paths for data, scripts and source code
-$username 		= "ubuntu"
-$erycina_dir		= "/home/${username}/mixed-reads-assembly-Erycina"  ##"/home/${id}/mixed-reads-assembly-Erycina"
-$bin_dir		= "${erycina_dir}/bin"
-$data_dir		= "${erycina_dir}/data"
-$doc_dir		= "${erycina_dir}/doc"
-$doc_paper_dir		= "${doc_dir}/paper"
-$manifests_dir		= "${erycina_dir}/manifests"
-$results_dir		= "${erycina_dir}/results"
-$src_dir		= "${erycina_dir}/src"
+$username 			= "ubuntu"
+$erycina_dir			= "/home/${username}/mixed-reads-assembly-Erycina"  ##"/home/${id}/mixed-reads-assembly-Erycina"
+$bin_dir			= "${erycina_dir}/bin"
+$data_dir			= "${erycina_dir}/data"
+$doc_dir			= "${erycina_dir}/doc"
+$doc_paper_dir			= "${doc_dir}/paper"
+$results_dir			= "${erycina_dir}/results"
+$results_assembly_dir		= "${results_dir}/assembly"
+$results_local_blast_dir	= "${result_dir}/local_blast"
+$src_dir			= "${erycina_dir}/src"
 
 
 
@@ -60,14 +61,9 @@ file {
     		group   => $username,
     		owner   => $username,
     		recurse => true;
-    $doc_paper_dir:
+	$doc_paper_dir:
 		ensure  => directory,
 	  	group   => $username,
-    		owner   => $username,
-    		recurse => true;
-    $manifests_dir:
-		ensure  => directory,
-    		group   => $username,
     		owner   => $username,
     		recurse => true;
 	$results_dir:
@@ -75,7 +71,17 @@ file {
 	  	group   => $username,
     		owner   => $username,
     		recurse => true;
-    $src_dir:
+	$results_assembly_dir:
+		ensure  => directory,
+    		group   => $username,
+    		owner   => $username,
+    		recurse => true;
+	$results_local_blast_dir:
+		ensure  => directory,
+    		group   => $username,
+    		owner   => $username,
+    		recurse => true;
+	$src_dir:
 		ensure  => directory,
 	  	group   => $username,
     		owner   => $username,
