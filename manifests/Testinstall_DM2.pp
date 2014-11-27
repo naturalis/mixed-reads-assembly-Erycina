@@ -25,7 +25,7 @@
 
 }
 
-<<<<<<< HEAD
+
 # set default paths for data, scripts and source code
 $username 			= "ubuntu"
 $erycina_dir			= "/home/${username}/mixed-reads-assembly-Erycina"  ##"/home/${id}/mixed-reads-assembly-Erycina"
@@ -37,18 +37,6 @@ $results_dir			= "${erycina_dir}/results"
 $results_assembly_dir		= "${results_dir}/assembly"
 $results_local_blast_dir	= "${result_dir}/local_blast"
 $src_dir			= "${erycina_dir}/src"
-=======
-# set default paths for scripts and source code
-$username 		= "ubuntu"
-$erycina_dir		= "/home/${username}/mixed-reads-assembly-Erycina"  ##"/home/${id}/mixed-reads-assembly-Erycina"
-$bin_dir		= "${erycina_dir}/bin"
-$doc_dir		= "${erycina_dir}/doc"
-$doc_paper_dir		= "${doc_dir}/paper"
-$manifests_dir		= "${erycina_dir}/manifests"
-$results_dir		= "${erycina_dir}/results"
-$src_dir		= "${erycina_dir}/src"
->>>>>>> 06952bc73f07b1a7cac89a390c5b5b8a76caef7b
-
 
 
 # create links for executables directories
@@ -88,11 +76,7 @@ file {
     		group   => $username,
     		owner   => $username,
     		recurse => true;
-<<<<<<< HEAD
-	$src_dir:
-=======
     	$src_dir:
->>>>>>> 06952bc73f07b1a7cac89a390c5b5b8a76caef7b
 		ensure  => directory,
 	  	group   => $username,
     		owner   => $username,
