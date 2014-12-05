@@ -29,7 +29,7 @@ fi
 
 # iterate over directories
 for SAMPLE in $SAMPLES; do
-	echo "going to process sample ${SAMPLE}”
+	echo "going to process sample ${SAMPLE}"
 
 	# list the FASTQ files in this dir. this should be
 	# two files (paired end)
@@ -115,7 +115,7 @@ for SAMPLE in $SAMPLES; do
 		echo "going to run ssamtools mpileup -uf $REFERENCE $SAM.sorted.bam | bcftools view -cg - | perl /usr/share/samtools/vcfutils.pl vcf2fq"
 		samtools mpileup -uf $REFERENCE $SAM.sorted.bam | bcftools view -cg - | perl /usr/share/samtools/vcfutils.pl vcf2fq > $CONSENSUS.fq
 	else
-		echo “Consensus file: $CONSENSUS already created"
+		echo "Consensus file: $CONSENSUS already created"
 	fi
 
 	# created fasta-consensus if needed
@@ -125,7 +125,7 @@ for SAMPLE in $SAMPLES; do
 		echo "going to run seqtk seq -A $CONSENSUS.fq"
 		seqtk seq -A $CONSENSUS.fq > $CONSENSUS.fasta
 	else
-		echo “Consensus file: $CONSENSUS.fasta already created"
+		echo "Consensus file: $CONSENSUS.fasta already created"
 	fi
 
 done
