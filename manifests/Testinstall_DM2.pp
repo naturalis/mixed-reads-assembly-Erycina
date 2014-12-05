@@ -22,6 +22,7 @@
 	"ncbi-blast+":					ensure => latest;
 	"samtools":					ensure => latest;
 	"make":						ensure => latest;
+	"seqtk":					ensure => latest;
 
 }
 
