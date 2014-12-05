@@ -5,30 +5,31 @@
 # with interesting results in our data (e.g. strange
 # read depths, areas under selection) with
 # known features
-REFERENCE=data/reference/ITAG2.3_release/ITAG2.3_genomic.fasta
-READS=data/reads
+REFERENCE=/media/vdb1/data/2014-10-31/PacBio/PRI/opt_smrtanalysis_current_common_jobs_016_016437_data_filtered_subreads.fasta #PacBIO
+READS=/media/vdb1/data/2014-10-31/Illumina/All_Raw_Data #illumina
+CONSENSUS=results/consensus_erycina.fq
 #SAMPLES=`ls $READS | egrep -v '^0'`
 SAMPLES="046"
 
 # threads for BWA align
-CORES=4
+CORES=6
 
 # recreate BWA index if not exists
 if [ ! -e $REFERENCE.bwt ]; then
-	echo "going to index $REFERENCE"
+	echo "going to index ${REFERENCE}”
 
 	# Warning: "-a bwtsw" does not work for short genomes, 
 	# while "-a is" and "-a div" do not work not for long 
 	# genomes. Please choose "-a" according to the length 
 	# of the genome.
-	bwa index -a bwtsw $REFERENCE
+	bwa index -a bwtsw ${REFERENCE}
 else 
 	echo "$REFERENCE already indexed"
 fi
 
 # iterate over directories
 for SAMPLE in $SAMPLES; do
-	echo "going to process sample $SAMPLE"
+	echo "going to process sample ${SAMPLE}”
 
 	# list the FASTQ files in this dir. this should be
 	# two files (paired end)
@@ -37,6 +38,7 @@ for SAMPLE in $SAMPLES; do
 	# lists of produced files
 	SAIS=""
 	SAM=""
+
 	for FASTQ in $FASTQS; do
 
 		# create new name
@@ -62,7 +64,7 @@ for SAMPLE in $SAMPLES; do
 		fi
 	done
 
-	# do bwa sampe if needed
+	# do bwa sampe (SAM_Paired_End) if needed
 	if [ ! -e $SAM ]; then
 
 		# create paired-end SAM file
@@ -104,6 +106,26 @@ for SAMPLE in $SAMPLES; do
 		samtools index $SAM.sorted.bam
 	else
 		echo "BAM file index $SAM.sorted.bam.bai already created"
+	fi
+
+	# created fastq-consensus if needed
+	if [ ! -e $CONSENSUS ]; then
+	
+		# this should result an consensus in fasts-format.
+		echo "going to run ssamtools mpileup -uf $REFERENCE $SAM.sorted.bam | bcftools view -cg - | perl /usr/share/samtools/vcfutils.pl vcf2fq"
+		samtools mpileup -uf $REFERENCE $SAM.sorted.bam | bcftools view -cg - | perl /usr/share/samtools/vcfutils.pl vcf2fq > $CONSENSUS.fq
+	else
+		echo “Consensus file: $CONSENSUS already created"
+	fi
+
+	# created fasta-consensus if needed
+	if [ ! -e $CONSENSUS.fasta ]; then
+	
+		# this should result an consensus in fasta-format.
+		echo "going to run seqtk seq -A $CONSENSUS.fq"
+		seqtk seq -A $CONSENSUS.fq > $CONSENSUS.fasta
+	else
+		echo “Consensus file: $CONSENSUS.fasta already created"
 	fi
 
 done
