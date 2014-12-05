@@ -16,7 +16,7 @@ CORES=6
 
 # recreate BWA index if not exists
 if [ ! -e $REFERENCE.bwt ]; then
-	echo "going to index ${REFERENCE}”
+	echo "going to index ${REFERENCE}"
 
 	# Warning: "-a bwtsw" does not work for short genomes, 
 	# while "-a is" and "-a div" do not work not for long 
