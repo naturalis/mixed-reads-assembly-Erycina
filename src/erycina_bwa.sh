@@ -6,10 +6,10 @@
 # read depths, areas under selection) with
 # known features
 REFERENCE=/media/vdb1/data/2014-10-31/PacBio/PRI/opt_smrtanalysis_current_common_jobs_016_016437_data_filtered_subreads.fasta #PacBIO
-READS=/media/vdb1/data/2014-10-31/Illumina/All_Raw_Data #illumina
+READS=/media/vdb1/data/2014-10-31/Illumina/All_Raw_Data/samples #illumina
 CONSENSUS_fq=/media/vdb1/results/consensus_erycina.fq
 CONSENSUS_fasta=/media/vdb1/results/consensus_erycina.fasta
-SAMPLES=`ls $READS | egrep '.fq$|sequence.txt$'`
+SAMPLES=`ls $READS`
 
 # threads for BWA align
 CORES=6
@@ -33,7 +33,7 @@ for SAMPLE in $SAMPLES; do
 
 	# list the FASTQ files in this dir. this should be
 	# two files (paired end)
-	FASTQS=`ls $READS/$SAMPLE.fq/`
+	FASTQS=`ls $READS/$SAMPLE/*.fq`
 
 	# lists of produced files
 	SAIS=""
