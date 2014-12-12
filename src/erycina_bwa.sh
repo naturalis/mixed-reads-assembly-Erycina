@@ -7,9 +7,9 @@
 # known features
 REFERENCE=/media/vdb1/data/2014-10-31/PacBio/PRI/opt_smrtanalysis_current_common_jobs_016_016437_data_filtered_subreads.fasta #PacBIO
 READS=/media/vdb1/data/2014-10-31/Illumina/All_Raw_Data #illumina
-CONSENSUS=results/consensus_erycina.fq
-#SAMPLES=`ls $READS | egrep -v '^0'`
-SAMPLES="046"
+CONSENSUS_fq=/media/vdb1/results/consensus_erycina.fq
+CONSENSUS_fasta=/media/vdb1/results/consensus_erycina.fasta
+SAMPLES=`ls $READS | egrep '.fq$|sequence.txt$'`
 
 # threads for BWA align
 CORES=6
@@ -27,13 +27,13 @@ else
 	echo "$REFERENCE already indexed"
 fi
 
-# iterate over directories
+# iterate over directories - unnecessary
 for SAMPLE in $SAMPLES; do
 	echo "going to process sample ${SAMPLE}"
 
 	# list the FASTQ files in this dir. this should be
 	# two files (paired end)
-	FASTQS=`ls $READS/$SAMPLE/*.fastq`
+	FASTQS=`ls $READS/$SAMPLE.fq/`
 
 	# lists of produced files
 	SAIS=""
@@ -42,7 +42,7 @@ for SAMPLE in $SAMPLES; do
 	for FASTQ in $FASTQS; do
 
 		# create new name
-		LOCALFASTA=`echo $REFERENCE | sed -e 's/.*\///'`
+		LOCALFASTA=`echo $REFERENCE | sed -e 's/.*\///'` #Delete paths - opt_smrtanalysis_current_common_jobs_016_016437_data_filtered_subreads.fasta
 		LOCALFASTQ=`echo $FASTQ | sed -e 's/.*\///'`
 		OUTFILE=$READS/$SAMPLE/$LOCALFASTQ-$LOCALFASTA.sai
 		SAIS="$SAIS $OUTFILE"
@@ -109,23 +109,23 @@ for SAMPLE in $SAMPLES; do
 	fi
 
 	# created fastq-consensus if needed
-	if [ ! -e $CONSENSUS ]; then
+	if [ ! -e $CONSENSUS_fq ]; then
 	
 		# this should result an consensus in fasts-format.
 		echo "going to run ssamtools mpileup -uf $REFERENCE $SAM.sorted.bam | bcftools view -cg - | perl /usr/share/samtools/vcfutils.pl vcf2fq"
-		samtools mpileup -uf $REFERENCE $SAM.sorted.bam | bcftools view -cg - | perl /usr/share/samtools/vcfutils.pl vcf2fq > $CONSENSUS.fq
+		samtools mpileup -uf $REFERENCE $SAM.sorted.bam | bcftools view -cg - | perl /usr/share/samtools/vcfutils.pl vcf2fq > $CONSENSUS_fq
 	else
 		echo "Consensus file: $CONSENSUS already created"
 	fi
 
 	# created fasta-consensus if needed
-	if [ ! -e $CONSENSUS.fasta ]; then
+	if [ ! -e $CONSENSUS_fasta ]; then
 	
 		# this should result an consensus in fasta-format.
-		echo "going to run seqtk seq -A $CONSENSUS.fq"
-		seqtk seq -A $CONSENSUS.fq > $CONSENSUS.fasta
+		echo "going to run seqtk seq -A $CONSENSUS_fq"
+		seqtk seq -A $CONSENSUS_fq > $CONSENSUS_fasta
 	else
-		echo "Consensus file: $CONSENSUS.fasta already created"
+		echo "Consensus file: $CONSENSUS_fasta already created"
 	fi
 
 done
