@@ -31,7 +31,7 @@ Architecture
 How do the work environment and the data volume(s) fit together?
 The work environment we have created is located on the instance and our data and results are located on the volume. This is better explained in the figure below.
 
-FIGURE HERE
+![alt text](https://github.com/naturalis/mixed-reads-assembly-Erycina/blob/master/doc/work_environment_layout.png "Work environment layout")
 
 In this figure you can see the general layout of the work environment and it's connection with the volume. We used the doc folder to store all our small documents and papers. In the src folder we stored the code that we have written and in the bin folder we stored the script we used as initialization script for the OpenStack instance.
 
