@@ -36,3 +36,5 @@ The work environment we have created is located on the instance and our data and
 In this figure you can see the general layout of the work environment and it's connection with the volume. We used the doc folder to store all our small documents and papers. In the src folder we stored the code that we have written and in the bin folder we stored the script we used as initialization script for the OpenStack instance.
 
 The broken lines display the connection of the instance and the volume. On the volume we have the data folder which houses all of the initial data and the results folder contains the results we have gathered during this project.
+
+For more information please refer to the project report Draft_assembly_Erycina_pusilla_report.docx in the doc folder.
