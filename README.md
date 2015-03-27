@@ -34,3 +34,8 @@ In this figure you can see the general layout of the work environment and it's c
 The broken lines display the connection of the instance and the volume. On the volume we have the data folder which houses all of the initial data and the results folder contains the results we have gathered during this project.
 
 For more information please refer to the project report Draft_assembly_Erycina_pusilla_report.docx in the doc folder.
+
+Mounting the volume
+-------------------
+After a reboot of the instance, re-mount the volume with the following command:
+ubuntu@mixed-reads-assembly-erycina:/dev$ sudo mount /dev/vdb1 /media/vdb1
