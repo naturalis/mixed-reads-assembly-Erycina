@@ -1,5 +1,13 @@
 #!/bin/bash
 
+#-------------------------
+# Jeroen: update 10.04.15: I ran the script that should attempt to align all available Illumina data to a single PacBio read
+# The resulting consensus is a single long sequence. It seems to have overwritten the previous output and shows mostly 'n's with a few short strings of acgt.
+# The PacBio read used is m140501_025107_42179_c100652722550000001823123910071493_s1_p0/110277/6094_46709
+# However, the consensus has a tag: @m140504_221935_42179_c100649792550000001823116010071457_s1_p0/109603/0_33707
+# which suggests that the consensus file was already created and thus no new consensus was created or stored. 
+# there are no log files. 
+#-------------------------
 # now using the reference from ITAG, so that
 # we might be able to crossreference regions
 # with interesting results in our data (e.g. strange
@@ -9,11 +17,11 @@ cd /media/vdb1/results/
 TIME=$(date +%H:%M:%S)
 mkdir $TIME
 RESULTS=/media/vdb1/results/
-RESULTS+=$TIME
-REFERENCE=/media/vdb1/data/2014-10-31/PacBio/PRI/pacbio10longest.fasta #PacBIO
+RESULTS+=$TIME				# the script creates this directory but it remains empty
+REFERENCE=/media/vdb1/data/2014-10-31/PacBio/PRI/pacbio10longest_1.fasta #PacBIO single read
 READS=/media/vdb1/data/2014-10-31/Illumina/All_Raw_Data/samples  #illumina
-CONSENSUS_fq=/$RESULTS/consensus_erycina.fq
-CONSENSUS_fasta=/$RESULTS/consensus_erycina.fasta
+CONSENSUS_fq=/$RESULTS/$TIME/consensus_erycina.fq	# the script creates these files in the 'results' directory, and so overwrites previously generated files. 
+CONSENSUS_fasta=/$RESULTS/$TIME/consensus_erycina.fasta  # try to write to newly created time direcltory here 
 SAMPLES=`ls $READS`
 
 # threads for BWA align
@@ -88,6 +96,7 @@ for SAMPLE in $SAMPLES; do
 		# -F 4  = remove unmapped reads
 		# -q 50 = remove reads with mapping qual < 50
 		# XXX maybe increase -q?
+		# Jeroen: changing the INT or removing the -F flag altogheter does not change the fact that no output is generated.
 		echo "going to run samtools view -bS -F 4 -q 50 $SAM > $SAM.filtered"
 		samtools view -bS -F 4 -q 20 $SAM > $SAM.filtered
 		gzip -9 $SAM
