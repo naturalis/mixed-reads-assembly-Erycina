@@ -1,0 +1,61 @@
+/media/vdb1/data/2014-10-31/PacBio/PRI/opt_smrtanalysis_current_common_jobs_016_016437_data_filtered_subreads.fasta already indexed
+going to process sample 111210_I595_FCC07FEACXX_L4_SZAXPI002374-11
+alignment /media/vdb1/data/2014-10-31/Illumina/All_Raw_Data/samples/111210_I595_FCC07FEACXX_L4_SZAXPI002374-11/111210_I595_FCC07FEACXX_L4_SZAXPI002374-11_2.fq-opt_smrtanalysis_current_common_jobs_016_016437_data_filtered_subreads.fasta.sai already created
+sam file /media/vdb1/data/2014-10-31/Illumina/All-opt_smrtanalysis_current_common_jobs_016_016437_data_filtered_subreads.fasta.sam already created
+sam file /media/vdb1/data/2014-10-31/Illumina/All-opt_smrtanalysis_current_common_jobs_016_016437_data_filtered_subreads.fasta.sam.filtered already created
+sam file /media/vdb1/data/2014-10-31/Illumina/All-opt_smrtanalysis_current_common_jobs_016_016437_data_filtered_subreads.fasta.sam.sorted already created
+BAM file index /media/vdb1/data/2014-10-31/Illumina/All-opt_smrtanalysis_current_common_jobs_016_016437_data_filtered_subreads.fasta.sam.sorted.bam.bai already created
+going to run ssamtools mpileup -uf /media/vdb1/data/2014-10-31/PacBio/PRI/opt_smrtanalysis_current_common_jobs_016_016437_data_filtered_subreads.fasta /media/vdb1/data/2014-10-31/Illumina/All-opt_smrtanalysis_current_common_jobs_016_016437_data_filtered_subreads.fasta.sam.sorted.bam | bcftools view -cg - | perl /usr/share/samtools/vcfutils.pl vcf2fq
+[mpileup] 1 samples in 1 input files
+<mpileup> Set max per-file depth to 8000
+[bcfview] 100000 sites processed.
+[afs] 0:96407.639 1:1824.298 2:1768.063
+[bcfview] 200000 sites processed.
+[afs] 0:96424.515 1:1814.698 2:1760.787
+[bcfview] 300000 sites processed.
+[afs] 0:96430.966 1:1737.397 2:1831.637
+[bcfview] 400000 sites processed.
+[afs] 0:96395.854 1:1816.673 2:1787.473
+[bcfview] 500000 sites processed.
+[afs] 0:96319.932 1:1900.380 2:1779.688
+[bcfview] 600000 sites processed.
+[afs] 0:96384.369 1:1870.313 2:1745.318
+[bcfview] 700000 sites processed.
+[afs] 0:96337.088 1:1841.916 2:1820.995
+[bcfview] 800000 sites processed.
+[afs] 0:96276.199 1:1918.460 2:1805.341
+[bcfview] 900000 sites processed.
+[afs] 0:96435.419 1:1846.423 2:1718.158
+[bcfview] 1000000 sites processed.
+[afs] 0:96494.187 1:1765.351 2:1740.461
+[bcfview] 1100000 sites processed.
+[afs] 0:96399.192 1:1885.871 2:1714.937
+[bcfview] 1200000 sites processed.
+[afs] 0:96297.247 1:1887.366 2:1815.387
+[bcfview] 1300000 sites processed.
+[afs] 0:96241.169 1:1959.947 2:1798.884
+[bcfview] 1400000 sites processed.
+[afs] 0:96428.063 1:1824.287 2:1747.650
+[bcfview] 1500000 sites processed.
+[afs] 0:96427.483 1:1843.714 2:1728.803
+[bcfview] 1600000 sites processed.
+[afs] 0:96441.335 1:1830.519 2:1728.147
+[afs] 0:48467.520 1:861.150 2:832.331
+going to run seqtk seq -A /media/vdb1/results/consensus_erycina.fq
+going to process sample 111217_I123_FCD0HJEACXX_L6_SZAXPI002377-12
+alignment /media/vdb1/data/2014-10-31/Illumina/All_Raw_Data/samples/111217_I123_FCD0HJEACXX_L6_SZAXPI002377-12/111217_I123_FCD0HJEACXX_L6_SZAXPI002377-12_2.fq-opt_smrtanalysis_current_common_jobs_016_016437_data_filtered_subreads.fasta.sai already created
+sam file /media/vdb1/data/2014-10-31/Illumina/All-opt_smrtanalysis_current_common_jobs_016_016437_data_filtered_subreads.fasta.sam already created
+sam file /media/vdb1/data/2014-10-31/Illumina/All-opt_smrtanalysis_current_common_jobs_016_016437_data_filtered_subreads.fasta.sam.filtered already created
+sam file /media/vdb1/data/2014-10-31/Illumina/All-opt_smrtanalysis_current_common_jobs_016_016437_data_filtered_subreads.fasta.sam.sorted already created
+BAM file index /media/vdb1/data/2014-10-31/Illumina/All-opt_smrtanalysis_current_common_jobs_016_016437_data_filtered_subreads.fasta.sam.sorted.bam.bai already created
+Consensus file:  already created
+Consensus file: /media/vdb1/results/consensus_erycina.fasta already created
+going to process sample s_2_sequence
+alignment /media/vdb1/data/2014-10-31/Illumina/All_Raw_Data/samples/s_2_sequence/s_2_sequence_1.fq-opt_smrtanalysis_current_common_jobs_016_016437_data_filtered_subreads.fasta.sai already created
+alignment /media/vdb1/data/2014-10-31/Illumina/All_Raw_Data/samples/s_2_sequence/s_2_sequence_2.fq-opt_smrtanalysis_current_common_jobs_016_016437_data_filtered_subreads.fasta.sai already created
+sam file /media/vdb1/data/2014-10-31/Illumina/All-opt_smrtanalysis_current_common_jobs_016_016437_data_filtered_subreads.fasta.sam already created
+sam file /media/vdb1/data/2014-10-31/Illumina/All-opt_smrtanalysis_current_common_jobs_016_016437_data_filtered_subreads.fasta.sam.filtered already created
+sam file /media/vdb1/data/2014-10-31/Illumina/All-opt_smrtanalysis_current_common_jobs_016_016437_data_filtered_subreads.fasta.sam.sorted already created
+BAM file index /media/vdb1/data/2014-10-31/Illumina/All-opt_smrtanalysis_current_common_jobs_016_016437_data_filtered_subreads.fasta.sam.sorted.bam.bai already created
+Consensus file:  already created
+Consensus file: /media/vdb1/results/consensus_erycina.fasta already created
