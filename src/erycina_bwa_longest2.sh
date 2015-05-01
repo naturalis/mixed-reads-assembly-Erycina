@@ -14,7 +14,7 @@
 # read depths, areas under selection) with
 # known features
 cd /media/vdb1/results/
-TIME=`date +%H:%M:%S`
+TIME=$(date +%H:%M:%S)
 mkdir $TIME
 RESULTS=/media/vdb1/results/
 RESULTS+=$TIME				# the script creates this directory but it remains empty
