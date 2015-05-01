@@ -19,7 +19,7 @@ mkdir $TIME
 RESULTS=/media/vdb1/results/
 RESULTS+=$TIME				# the script creates this directory but it remains empty
 REFERENCE=/media/vdb1/data/2014-10-31/PacBio/PRI/pacbio10longest_1.fasta #PacBIO single read
-READS=/media/vdb1/data/2014-10-31/Illumina/All_Raw_Data/samples  #illumina
+READS=/media/vdb1/data/2014-10-31/Illumina/LGT	  #illumina data from LGTC to speed up testing
 CONSENSUS_fq=/$RESULTS/$TIME/consensus_erycina.fq	# the script creates these files in the 'results' directory, and so overwrites previously generated files. 
 CONSENSUS_fasta=/$RESULTS/$TIME/consensus_erycina.fasta  # try to write to newly created time direcltory here 
 SAMPLES=`ls $READS`
